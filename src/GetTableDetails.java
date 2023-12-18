@@ -1,21 +1,16 @@
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
 
-public class Create_DB {
+public class GetTableDetails {
     public static void main(String[] args) {
-        try (Connection connection = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/postgres",
-                "postgres",
-                "Koundi@123")) {
+        try (Connection connection = DBConnection.getConnection()) {
+                 // ! List of Stock Table 
 
-                    // ! List of Stock Table 
-
-            try (PreparedStatement StockStatement = connection.prepareStatement("SELECT * FROM stock");
+                 try (PreparedStatement StockStatement = connection.prepareStatement("SELECT * FROM stock");
                  ResultSet resultSet = StockStatement.executeQuery()) {
                 System.out.println("Stock");
                 System.out.println("\n");
